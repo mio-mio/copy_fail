@@ -46,6 +46,8 @@ The page cache is a memory management mechanism used by the Linux kernel to stor
 
 When a file is read from disk, a copy is stored in memory. Future operations use this cached copy instead of reading from disk again.
 
+![copyfail4coma](copyfailp2026-05-06_19.20.44.png)
+
 In Copy Fail, this mechanism can be abused. Instead of safely copying data, the kernel ends up allowing unintended modification of the cached data in memory.
 
 
@@ -71,8 +73,38 @@ Even a small change in such a protected area can significantly alter a program�
 For example, changing a condition from “**don't allow** if the user is not root” to “**allow**” can bypass a security check.
 
 
-## 8.Realistic Attack Scenario
+## 8. Realistic Attack Scenario
 
 In what situations could this vulnerability actually affect us?
 
 Here are three common scenarios:
+
+### 8-1. Web App
+
+A vulnerability in a web application can serve as an entry point for an attacker.
+
+For example, an attacker may exploit a bug (such as command injection or file upload) to gain access to the server with low privileges.
+
+From there, the Copy Fail vulnerability can be used to escalate privileges to root and take full control of the system.
+
+### 8-2. Malware
+
+A user may accidentally download and run malware by clicking an unknown link on a website or in a phishing email.
+
+In such cases, the malware typically runs with normal user privileges.
+
+However, if the system is vulnerable to Copy Fail, the malware can exploit it to escalate privileges to root and take full control of the system.
+
+### 8-3. Shared Server
+
+Shared servers are commonly used in colleges and companies, where multiple users have access to the same system.
+
+If one user account is compromised, the attacker may gain low-level access to the server.
+
+In such environments, the Copy Fail vulnerability can be used to escalate privileges to root.
+
+Once root access is obtained, the attacker can access sensitive data, modify system settings, and potentially use the server as a stepping stone to attack other systems on the network.
+
+## 9. Mitigation
+
+
