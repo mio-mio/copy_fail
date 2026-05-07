@@ -117,14 +117,14 @@ Rebooting the system is also important, as it clears the page cache.
 
 I once heard a common rule in safe coding: "Don't write the same code twice," because duplicated logic can lead to mistakes.
 
-While Copy Fail is not caused by duplicated code, it reminded me of a similar idea — that **even trusted mechanisms like copying data can fail in unexpected ways.**
+While Copy Fail is not caused by duplicated code, it reminded me of a similar idea: **even trusted mechanisms like copying data can fail in unexpected ways.**
 
 Even when files on disk appear clean, the system may execute altered data stored in memory. This breaks a fundamental assumption: that what we see is what gets executed.
 
-Through this vulnerability, I learned that memory corruption is not limited to stack-based or heap-based attacks. Compared to those, Copy Fail is much more subtle.
+Through this vulnerability, I learned that memory corruption is not limited to stack-based or heap-based attacks. Compared to these, Copy Fail is much more subtle.
 
 I was also surprised to learn that there are no built-in mechanisms to verify the integrity of data stored in the page cache.
 
-This experience reminded me that understanding how systems actually work — not just how they appear to work — is essential in cybersecurity.
+This vulnerability is not a simple overwrite of a file. It happens through specific kernel operations that unintentionally modify cached data in memory.
 
-I would like to continue learning more about such vulnerabilities in the future.
+I would like to continue exploring about such vulnerabilities in the future.
