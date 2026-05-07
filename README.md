@@ -1,4 +1,4 @@
-# Understanding the Copy Fail Vulnerability”
+# Silent Memory Corruption: How Copy Fail Breaks Trust in Linux Systems
 
 ## 1. Introduction
 Recently, the "Copy Fail" vulnerability has attracted attention, as it affects major Linux distributions.
@@ -31,9 +31,9 @@ Importantly, the vulnerability does not directly modify files on disk. Instead, 
 
 ## 4. Setuid and Root
 
-Setuid is a permission setting in operating systems that allows a user to execute a program with the privileges of another user.
+`Setuid` is a permission setting in operating systems that allows a user to execute a program with the privileges of another user.
 
-When a file has the setuid bit enabled and is owned by root, it runs with root privileges instead of the user who executed it.
+When a file has the `setuid` bit enabled and is owned by root, it runs with root privileges instead of the user who executed it.
 
 Root is the highest privilege level on a computer system. A root user can perform any operation that other users can, and more.
 
@@ -105,6 +105,26 @@ In such environments, the Copy Fail vulnerability can be used to escalate privil
 
 Once root access is obtained, the attacker can access sensitive data, modify system settings, and potentially use the server as a stepping stone to attack other systems on the network.
 
+
 ## 9. Mitigation
 
+Since this vulnerability exists in the Linux kernel, it is strongly recommended to apply security updates provided by your distribution.
 
+Rebooting the system is also important, as it clears the page cache.
+
+
+## 10. Conclusion
+
+I once heard a common rule in safe coding: "Don't write the same code twice," because duplicated logic can lead to mistakes.
+
+While Copy Fail is not caused by duplicated code, it reminded me of a similar idea — that **even trusted mechanisms like copying data can fail in unexpected ways.**
+
+Even when files on disk appear clean, the system may execute altered data stored in memory. This breaks a fundamental assumption: that what we see is what gets executed.
+
+Through this vulnerability, I learned that memory corruption is not limited to stack-based or heap-based attacks. Compared to those, Copy Fail is much more subtle.
+
+I was also surprised to learn that there are no built-in mechanisms to verify the integrity of data stored in the page cache.
+
+This experience reminded me that understanding how systems actually work — not just how they appear to work — is essential in cybersecurity.
+
+I would like to continue learning more about such vulnerabilities in the future.
