@@ -85,6 +85,11 @@ This kind of optimization collision has already contributed to other vulnerabili
 I would like to continue exploring similar vulnerabilities in the future.
 
 
+
+## Conceptual Diagram
+
+![Copy Fail Conceptual Diagram](images/copyfail_diagram.png)
+
 ## References
 
 - [NVD: CVE-2026-31431](https://nvd.nist.gov/vuln/detail/CVE-2026-31431)
